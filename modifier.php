@@ -25,7 +25,6 @@ if (isset($_POST['enregistrer'])) {
     $dateN .= $_POST["dateN"];
     $lieuN .= $_POST["lieuN"];
      $adress .= $_POST["address"];
-   
     $serverName = "localhost";
     $userName = "newUsers";
     $password = "password";
@@ -85,7 +84,7 @@ if (isset($_POST['enregistrer'])) {
      $connexion = null;
  ?>
 <div class="card mt-5">
-    <div class="card-header text-white text-center bg-secondary">
+    <div class="card-header text-white text-center bg-primary">
 <h3><span class="material-symbols-outlined me-2">person</span>mettre à jour</h3>
     </div>
     <?php foreach ($edit as $getData) { ?>

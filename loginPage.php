@@ -27,7 +27,8 @@ session_start();
                 if (isset($_POST['submit'])) {
                   $adminEmail = htmlspecialchars($_POST['email']);
                   $adminPassword =  htmlspecialchars($_POST['mot_de_passe']);
-
+                  
+                  
                    $findEmail = $connection->prepare('SELECT email from adminadfi where email = ?');
                    $findEmail->execute(array($adminEmail));
 
@@ -42,22 +43,24 @@ session_start();
 	              echo "<p style='color:red;'>Veuillez vous authentifier svp.</p>";
               }
              else {
-	                  echo "<p style='color:red;'>Login ou mot de passe incorrect.</p>";
+	                  echo "<p style='color:red;'>Email ou mot de passe incorrect.</p>";
                   }
            }
           if (isset($_GET["login"]))
           {
              echo "<p style='color:blue;'>Vous venez de vous déconnecter.</p>";
           }
+         
         if (isset($_GET["msgAdmin"]))
          {
              echo "<p style='color:blue;'>Vous etes déconnecté. Veuillez vous reconnecter svp!</p>";
          }
+        
         ?>
 		</form>
 	</div>
 	<div class="overlay-container">
-		<img src="téléchargement.jpeg" alt="téléchargement" style="width:370px;height:370px;position:relative;top:50px;"/>
+		<img src="images.jpeg" alt="téléchargement" style="width:370px;height:370px;position:relative;top:50px;"/>
 	</div>
 </div>
 </body>

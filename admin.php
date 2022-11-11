@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
   #font {
     background-color:#fffffff5;
@@ -30,13 +30,25 @@
 <hr>
 <?php
  if (isset($_GET['mod'])) {
-    echo "<p class='alert alert-success'>modification effectuée avec success.</p>"; 
+  echo "<p class='alert alert-success alert-dismissible fade show' role='alert'>
+  mise à jour effectuée avec success
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'>
+  </button>
+  </p>";
  }
  if (isset($_GET['add'])) {
-    echo "<p class='alert alert-success'>insertion effectuée avec success.</p>"; 
+  echo "<p class='alert alert-success alert-dismissible fade show' role='alert'>
+  insertion effectuée avec success
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'>
+  </button>
+  </p>";
  }
  if (isset($_GET['sup'])) {
-    echo "<p class='alert alert-success'>suppression effectuée avec success</p>";
+    echo "<p class='alert alert-success alert-dismissible fade show' role='alert'>
+    suppression effectuée avec success
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'>
+    </button>
+    </p>";
  }
 ?>
 <div class="float-end me-5">
@@ -85,7 +97,7 @@ person_add
       <td><?= $getData['Date_de_naissance']?></td>
       <td><?= $getData['Lieu_de_naissance']?></td>
       <td><?= $getData['adress']?></td>
-      <td><a class="btn btn-danger" href="supprimer.php?id=<?=$getData['id']?>"
+      <td><a class="btn btn-outline-danger" href="supprimer.php?id=<?=$getData['id']?>"
       onClick="return confirm('Voulez vous vraiment supprimer l\'eleve <?=$getData['prenoms']?> <?=$getData['Noms']?>')">
       <span class="material-symbols-outlined">
          delete
