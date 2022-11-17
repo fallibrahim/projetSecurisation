@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -19,11 +20,15 @@
 </head>
 <body id="font">
 <?php
-    if($_SESSION['connexion'] == false)
-     {
+    if (!$_SESSION['connexion']) {
        header('location:loginPage.php?msgAdmin=admin');
+       exit;
      } 
-     ?>
+     if ($_SESSION['connexion'] > time() + 300) {
+      header('location:loginPage.php?msgAdmin=admin');
+      exit;
+    } 
+ ?>
 <?php include 'menu.php'?>
 <div class="container-fluid">
 <h1 class="text-center mt-5">Bienvenue à la page administration du Site</h1>
@@ -67,14 +72,21 @@ person_add
       $request = $connexion->prepare('SELECT * from eleves');
       $request->execute();
       $data = $request->fetchAll();
-  } 
-  catch(PDOException $e) {
+  } catch(PDOException $e) {
     echo "Error : ". $e->getMessage();
   }
 
   $connexion = null;
   $result = $data;
 ?>
+<div class="input-group flex-nowrap">
+<button class="btn btn-primary">
+<span class="material-symbols-outlined">
+search
+</span>
+</button>
+  <input type="text" id="myInput" class="form-control" placeholder="chercher un élève" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
 <table class="table caption-top table-hover">
   <caption class="text-center text-primary" id="liste">Liste  des élèves de l'établissement</caption>
   <thead>
@@ -89,7 +101,7 @@ person_add
       <th scope="col">Détail</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="myTable">
   <?php foreach($result as $getData): ?>
     <tr>
       <td><?= $getData['prenoms']?></td>
@@ -116,5 +128,15 @@ person_add
   </tbody>
 </table>
 </div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </body>
 </html>

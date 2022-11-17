@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <?php include 'menu.php';?>
 <?php
-    if($_SESSION['connexion'] == false)
-     {
+    if (!$_SESSION['connexion']) {
        header('location:loginPage.php?msgAdmin=admin');
+       exit;
      } 
-     ?>
+ ?>
 <div class="card mt-5">
 <?php 
   $prenom = "";
@@ -24,9 +24,8 @@
     $nom .= $_POST["nom"];
     $dateN .= $_POST["dateN"];
     $lieuN .= $_POST["lieuN"];
-     $adress .= $_POST["address"];
+    $adress .= $_POST["address"];
      
-
     $serverName = "localhost";
     $userName = "newUsers";
     $password = "password";

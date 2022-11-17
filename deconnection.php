@@ -1,6 +1,5 @@
 <?php
   session_start();
-  $_SESSION = array();
   session_destroy();
-  header("location:loginPage.php?login=disconnect"); 
+  header('location:loginPage.php?login=disconnect'); 
 ?>

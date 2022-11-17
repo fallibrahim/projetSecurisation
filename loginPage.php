@@ -14,7 +14,7 @@ session_start();
 			<h1>Connectez vous</h1>
 			<input type="email" placeholder="Email" name="email"/>
 			<input type="password" placeholder="Mot de passe" name="mot_de_passe" />
-			<a href="#">Mot de passe oublié?</a>
+			<a href="forget_password.php">Mot de passe oublié?</a>
 			<button type="submit" class="btn btn-primary" name="submit">Connectez vous</button> <br/>
 			<?php
                   $servername = "localhost";
@@ -28,12 +28,13 @@ session_start();
                   $adminEmail = htmlspecialchars($_POST['email']);
                   $adminPassword =  htmlspecialchars($_POST['mot_de_passe']);
                   
-                  
-                   $findEmail = $connection->prepare('SELECT email from adminadfi where email = ?');
-                   $findEmail->execute(array($adminEmail));
+                  password_hash($adminPassword, PASSWORD_DEFAULT);
 
-                   $findPassword = $connection->prepare('SELECT mot_de_passe from adminadfi where mot_de_passe = ?');
-                   $findPassword->execute(array($adminPassword));
+                  $findEmail = $connection->prepare('SELECT email from adminadfi where email = ?');
+                  $findEmail->execute(array($adminEmail));
+
+                  $findPassword = $connection->prepare('SELECT mot_de_passe from adminadfi where mot_de_passe = ?');
+                  $findPassword->execute(array($adminPassword));
 
                if($findEmail->rowCount() > 0 && $findPassword->rowCount() > 0) {
 	             $_SESSION['connexion'] = true;
@@ -50,12 +51,12 @@ session_start();
           {
              echo "<p style='color:blue;'>Vous venez de vous déconnecter.</p>";
           }
-         
+        
         if (isset($_GET["msgAdmin"]))
          {
              echo "<p style='color:blue;'>Vous etes déconnecté. Veuillez vous reconnecter svp!</p>";
          }
-        
+      
         ?>
 		</form>
 	</div>

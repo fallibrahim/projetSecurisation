@@ -15,7 +15,6 @@
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-primary p-4">
       <div class="container-fluid">
         <a class="navbar-brand text-white" href="#">ADFI SYSTEME</a>
